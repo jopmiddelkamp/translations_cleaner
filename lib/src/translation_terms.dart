@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:translations_cleaner/src/models/term.dart';
 import 'package:glob/glob.dart';
 import 'package:glob/list_local_fs.dart';
+import 'package:translations_cleaner/src/models/term.dart';
 
 /// Iterate through all files ending in `*.arb` and extract all the translation
 /// terms being used.
 ///
 Set<Term> getTranslationTerms() {
   final path = Directory.current.path;
-  final arbFile = Glob("$path/**.arb");
+  final arbFile = Glob("$path/**.arb", recursive: true);
   final arbFiles = arbFile.listSync(followLinks: false);
 
   final arbTerms = <Term>{};

@@ -7,6 +7,7 @@ import 'package:glob/list_local_fs.dart';
 List<FileSystemEntity> translationFiles() {
   final path = Directory.current.path;
 
-  final arbFile = Glob("$path/**.arb");
+  final arbFile = Glob("$path/**.arb", recursive: true);
+
   return arbFile.listSync(followLinks: false);
 }
